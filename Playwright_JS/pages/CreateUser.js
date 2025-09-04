@@ -15,14 +15,18 @@ class CreateUser {
   async goto() {
     await this.page.goto('https://front.serverest.dev/cadastrarusuarios');
   }
+
+  async create(nome,email, password) {
+    await this.nomeInput.fill(nome);
+    await this.emailInput.fill(email);
+    await this.passwordInput.fill(password);
+    await this.submitButton.click();
+  }
+
   async expectCreatedIn() {
     await expect(this.page).toHaveURL(/front\.serverest\.dev\/home/);
   }
 
-  async expectError(message) {
-    const errorLocator = this.page.locator('role=alert');
-    await expect(errorLocator).toHaveText(message);
-  }
 }
 
 module.exports = { CreateUser };
