@@ -6,7 +6,7 @@ test.describe('Login — ServeRest', () => {
     const loginPage = new LoginPage(page);
 
     await loginPage.goto();
-    await loginPage.login('beltrano@qa.com.br', 'teste');
+    await loginPage.login('qa@qa.io', '123');
     await loginPage.expectLoggedIn();
   });
 
@@ -15,6 +15,6 @@ test.describe('Login — ServeRest', () => {
 
     await loginPage.goto();
     await loginPage.login('beltrano@qa.com.br', '123');
-    await loginPage.expectError('×Email e/ou senha inválidos'); // ajusta conforme mensagem real
+    await loginPage.expectError('×Email e/ou senha inválidos');
   });
 });
