@@ -23,7 +23,7 @@ class LoginPage {
 
   async expectLoggedIn() {
     // Ajuste conforme comportamento real após login bem-sucedido
-    await expect(this.page).toHaveURL(/front\.serverest\.dev\/admin\/home/);
+    await expect(this.page).toHaveURL('https://front.serverest.dev/home');
   }
 
   async expectError(message) {
