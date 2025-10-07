@@ -25,6 +25,13 @@ test.describe.serial('CRUD Usuários', () => {
     userId = body._id;
   });
 
+  test('Criar usuário já existente', async () => {
+    const response = await api.post('/usuarios', { data: userData });
+    const body = await response.json();
+    expect(response.status()).toBe(400);
+    expect(body.message).toBe('Este email já está sendo usado');
+  });
+
   test('Login', async () => {
     const response = await api.post('/login', {
       data: {
@@ -48,9 +55,14 @@ test.describe.serial('CRUD Usuários', () => {
   test('Listar usuários com ID', async () => {
     expect(userId).toBeTruthy();
     const response = await api.get(`/usuarios/${userId}`);
-    const body = await response.json();
+    expect(response.status()).toBe(200);
     expect(response.ok()).toBeTruthy();
-    //expect(Array.isArray(body.usuarios)).toBeTruthy();
+  });
+
+  test('Listar usuários com ID inválido', async () => {
+    expect(userId).toBeTruthy();
+    const response = await api.get(`/usuarios/123`);
+    expect(response.status()).toBe(400);
   });
 
   test('Atualizar usuário', async () => {
@@ -58,6 +70,7 @@ test.describe.serial('CRUD Usuários', () => {
     const updatedUser = { ...userData, nome: 'TESTE QA Atualizado' };
     const response = await api.put(`/usuarios/${userId}`, { data: updatedUser });
     const body = await response.json();
+    expect(response.status()).toBe(200);
     expect(response.ok()).toBeTruthy();
     expect(body.message).toBe('Registro alterado com sucesso');
   });
