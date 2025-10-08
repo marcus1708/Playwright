@@ -15,15 +15,14 @@ class LoginPage {
     await this.page.goto('https://front.serverest.dev/login');
   }
 
-  async login(email, password) {
+    async login(email, password) {
     await this.emailInput.fill(email);
     await this.passwordInput.fill(password);
     await this.submitButton.click();
   }
 
   async expectLoggedIn() {
-    // Ajuste conforme comportamento real após login bem-sucedido
-    await expect(this.page).toHaveURL('https://front.serverest.dev/home');
+    await expect(this.page).toHaveURL('https://front.serverest.dev/admin/home');
   }
 
   async expectError(message) {
@@ -32,4 +31,10 @@ class LoginPage {
   }
 }
 
-module.exports = { LoginPage };
+async function login(page, email, password) {
+  await page.fill('input[name="email"]', email);
+  await page.fill('input[name="password"]', password);
+  await page.click('button[type="submit"]');
+}
+
+module.exports = { LoginPage, login };
