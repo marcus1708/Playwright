@@ -9,6 +9,7 @@ class CreateUser {
     this.nomeInput = page.locator('input[name="nome"]');
     this.emailInput = page.locator('input[name="email"]');
     this.passwordInput = page.locator('input[name="password"]');
+    this.adm = page.getByLabel('Cadastrar como administrador?').check();
     this.submitButton = page.locator('button[type="submit"]');
   }
 
@@ -22,11 +23,9 @@ class CreateUser {
     await this.passwordInput.fill(password);
     await this.submitButton.click();
   }
-
-  async expectCreatedIn() {
-    await expect(this.page).toHaveURL(/front\.serverest\.dev\/home/);
+  async expectCreatedIn(){
+    await expect(this.page).toHaveURL('https://front.serverest.dev/admin/home');
   }
-
 }
 
 module.exports = { CreateUser };

@@ -7,6 +7,6 @@ test.describe('Create User — ServeRest', () => {
 
     await createUser.goto();
     await createUser.create('TESTE QA', 'qa@qa.io', '123');
-    await createUser.expectCreatedIn();
+    await createUser.expectCreatedIn()
   });
 });
