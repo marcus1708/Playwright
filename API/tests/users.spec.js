@@ -8,7 +8,7 @@ const cartData = JSON.parse(fs.readFileSync('./data/carrinho.json', 'utf-8'));
 
 let api,token,userId,prodId,cartId;
 
-test.describe.serial('CRUD Usuários', () => {
+test.describe.serial('CRUD API Serverest', () => {
   test.beforeAll(async () => {
     api = await request.newContext({
       baseURL,
