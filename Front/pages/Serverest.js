@@ -79,6 +79,7 @@ const { expect } = require('@playwright/test');
             await this.inputNome.fill(nome);
             await this.inputEmail.fill(email);
             await this.inputSenha.fill(senha);
+            await this.adm.click();
             await this.btnCadastrar.click();
         }
         async Verif_Msg_Erro(mensagemEsperada) {
